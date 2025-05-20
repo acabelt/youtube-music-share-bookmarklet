@@ -1,11 +1,13 @@
 # YouTube Music Share - Project Scope
 
 ## Overview
+
 Create a browser bookmarklet that extracts YouTube Music track information and generates markdown content for easy integration with an Astro.js blog.
 
 ## Core Features
 
 1. **Bookmarklet**
+
    - Extract video title
    - Convert YouTube Music URL to regular YouTube URL
    - Format current date in YYYY-MM-DD
@@ -13,8 +15,10 @@ Create a browser bookmarklet that extracts YouTube Music track information and g
    - Copy result to clipboard
 
 2. **Markdown Format**
+
    ```markdown
    ---
+   [SLUGIFIED_VIDEO_TITLE].md
    title: "[VIDEO_TITLE]"
    url: https://www.youtube.com/watch?v=[VIDEO_ID]
    date: [CURRENT_DATE]
@@ -24,6 +28,7 @@ Create a browser bookmarklet that extracts YouTube Music track information and g
 ## Implementation Details
 
 ### Bookmarklet (bookmarklet.js)
+
 - Self-executing anonymous function
 - Get current page title and URL
 - Transform YouTube Music URL to standard YouTube URL
@@ -33,6 +38,7 @@ Create a browser bookmarklet that extracts YouTube Music track information and g
 - Provide user feedback
 
 ### Testing
+
 - Test page with instructions
 - Bookmarklet installation guide
 - Sample output preview
@@ -40,10 +46,12 @@ Create a browser bookmarklet that extracts YouTube Music track information and g
 ## Technical Considerations
 
 1. **Browser Compatibility**
+
    - Works in modern browsers (Chrome, Firefox, Safari, Edge)
    - Graceful degradation for older browsers
 
 2. **Security**
+
    - Only runs on youtube.com domains
    - No external dependencies
    - No data collection
@@ -56,6 +64,7 @@ Create a browser bookmarklet that extracts YouTube Music track information and g
 ## Future Enhancements
 
 1. **UI Improvements**
+
    - Preview before copying
    - Custom date selection
    - Additional frontmatter fields

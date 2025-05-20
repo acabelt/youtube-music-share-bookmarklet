@@ -17,12 +17,22 @@ javascript: (function () {
     if (!videoId) {
       throw new Error("Could not find video ID in URL");
     }
-    const pageTitle = document.title
-      .replace(/\s*-\s*YouTube(\s*Music)?\s*$/, "")
-      .trim();
+    const titleElement =
+      document.querySelector("yt-formatted-string.title.ytmusic-player-bar") ||
+      document.querySelector("h1.ytd-video-primary-info-renderer") ||
+      document.querySelector("h1.title");
+    if (!titleElement) {
+      throw new Error("Could not find title element");
+    }
+    const pageTitle = titleElement.textContent.trim();
+    const slug = pageTitle
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/[\s_-]+/g, "-")
+      .replace(/^-+|-+$/g, "");
     const today = new Date();
     const formattedDate = today.toISOString().split("T")[0];
-    const markdown = `---\ntitle: "${pageTitle}"\nurl: https://www.youtube.com/watch?v=${videoId}\ndate: ${formattedDate}\n---`;
+    const markdown = `${slug}.md\n---\ntitle: "${pageTitle}"\nurl: https://www.youtube.com/watch?v=${videoId}\ndate: ${formattedDate}\n---`;
     navigator.clipboard
       .writeText(markdown)
       .then(() => {
